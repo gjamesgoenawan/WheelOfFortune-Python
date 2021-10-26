@@ -1,5 +1,5 @@
 # Wheel Of Fortune Implementation in Python
-Built for NTU MA1080 Mini Project by [Gabriel James Goenawan](https://www.linkedin.com/in/gjamesgoenawan/)
+Built for NTU MA1008 Mini Project by [Gabriel James Goenawan](https://www.linkedin.com/in/gjamesgoenawan/)
 
 ## Requirements and Running The Code
 1. Formatting only supported in Windows & through commandline Interface (cmd). 

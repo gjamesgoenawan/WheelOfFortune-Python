@@ -23,7 +23,7 @@ FeatureTest Folder consists of first successful test code for most features incl
 4. A dynamic scoreboard that adjusts its own size based on the numbers of player and their balance.
 5. Phrases are randomly selected & displayed properly in the GUI.
 6. Properly implemented player action function. So it's easy to add new features.
-7. Some input proofing. (I decided to took the first character if the input length is more than 1 character & skipped the person who gives empty input or " ")
+7. Some input proofing. (Decided to took the first character if the input length is more than 1 character & skipped the person who gives empty input or " ")
 8. Working input timer with a graphical indicator. (with Threading)
 9. Proper ending screen.
 10. Player number can be customized. The default max player is 3, but you can change it by changing the maxplayer variable in line 3.

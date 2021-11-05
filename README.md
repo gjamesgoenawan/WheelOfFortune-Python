@@ -12,8 +12,8 @@ git clone https://github.com/gabrieljames01/WheelOfFortune-Python.git
 cd WheelOfFortune-Python
 ```
 
-App can be ran using:
-`py app.py`
+App launched by runnning:
+```py app.py```
 No Additional Libraries needed.
 
 FeatureTest Folder consists of first successful test code for most features included in this project.

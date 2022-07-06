@@ -1,6 +1,6 @@
 ## GABRIEL JAMES GOENAWAN U1920061F
 
-maxplayer = 3 #I've only included the asset for player 1-5, so errors will occur if maxplayer is more than 5.
+maxplayer = 3 #Assets included only supports player 1-5, so errors will occur if maxplayer is more than 5.
 
 import random
 import os
@@ -15,6 +15,10 @@ if os.name == "nt":
 	clear = lambda: os.system('cls') ## for windows system
 	os.system('@echo off')
 	os.system('mode con: cols=50 lines=5')
+
+if os.name == "posix":
+	clear = lambda: os.system('clear')
+
 else:
 	print("Your operating system isn't supported. Please use windows to run this program.")
 	exit()
@@ -58,27 +62,27 @@ screen.setup(800,890)
 clear()
 print("Loading asset... 10%")
 for x in range(1,6):
-	turtle.addshape('asset\\endbg'+str(x)+'.gif')
+	turtle.addshape(os.path.join('asset', 'endbg'+str(x)+'.gif'))
 clear()
 print("Loading asset... 30%")
-turtle.addshape('asset\\creds.gif')
+turtle.addshape(os.path.join('asset', 'creds.gif'))
 clear()
 print("Loading asset... 50%")
 for i in range (-1,16):
-	turtle.addshape("asset\\cnt"+str(i)+".gif")
+	turtle.addshape(os.path.join('asset', 'cnt'+str(i)+'.gif'))
 clear()
 print("Loading asset... 70%")
 
 for i in range (0,360):
-	turtle.addshape("asset\\"+str(i)+".gif")
+	turtle.addshape(os.path.join('asset', str(i)+'.gif'))
 clear()
 print("Loading asset... 90%")
-turtle.addshape("asset\\p1.gif")
-turtle.addshape("asset\\p2.gif")
-turtle.addshape("asset\\p3.gif")
-turtle.addshape("asset\\p4.gif")
-turtle.addshape("asset\\p5.gif")
-screen.bgpic('asset\\bg.gif')
+turtle.addshape(os.path.join('asset', 'p1.gif'))
+turtle.addshape(os.path.join('asset', 'p2.gif'))
+turtle.addshape(os.path.join('asset', 'p3.gif'))
+turtle.addshape(os.path.join('asset', 'p4.gif'))
+turtle.addshape(os.path.join('asset', 'p5.gif'))
+screen.bgpic(os.path.join('asset', 'bg.gif'))
 clear()
 print("Loading asset... 95%")
 turtle.penup()
@@ -88,12 +92,13 @@ turtle.back(2)
 turtle.right(90)
 turtle.forward(83)
 turtle.st()
-turtle.shape("asset\\0.gif")
+turtle.shape(os.path.join('asset', '0.gif'))
 clear()
 print("Loading asset... 100%")
 time.sleep(0.5)
 clear()
-os.system('mode con: cols=90 lines=35')
+if os.name == 'nt':
+	os.system('mode con: cols=90 lines=35')
 #global functions
 
 def existConsonant(word_hidden, word): #function to check if a consonant exist
@@ -109,7 +114,7 @@ def credit(): #credit screen renderer
 	t.speed(900)
 	t.left(90)
 	t.forward(890)
-	t.shape('asset\\creds.gif')
+	t.shape(os.path.join('asset', 'creds.gif'))
 	t.speed(4)
 	t.st()
 	t.backward(890)
@@ -123,7 +128,7 @@ def ending(turn, prize): #ending screen renderer
 	b.speed(900)
 	b.left(90)
 	b.forward(890)
-	b.shape('asset\\endbg'+str(turn)+'.gif')
+	b.shape(os.path.join('asset', 'endbg'+str(turn)+'.gif'))
 	b.speed(4)
 	b.st()
 	b.backward(890)
@@ -176,7 +181,7 @@ def timed_input(phrase): #timed input handler
 	thd.start()
 	for i in range (15,-2,-1):
 		if terminate == 0:
-			timerturtle.shape("asset\\cnt"+str(i)+".gif")
+			timerturtle.shape(os.path.join('asset', 'cnt'+str(i)+'.gif'))
 			time.sleep(1)
 		else:
 			break
@@ -197,24 +202,24 @@ def spinDraw(stop, turn, wstate): #Function that makes the wheel spin after the 
 	#i --> wheel rotation state | a --> speed
 
 	if wstate != None:
-		turtle.shape(turtle.shape("asset\\"+str(wstate[1])+".gif"))
+		turtle.shape(turtle.shape(os.path.join('asset', str(wstate[1])+'.gif')))
 	else:
-		turtle.shape(turtle.shape("asset\\0.gif"))
+		turtle.shape(turtle.shape(os.path.join('asset', '0.gif')))
 
 	y = turtle.stamp() #To ensure the wheel doesn't flickering.
 	stop -= 1
 	turtle.ht()
 	turtle.forward(294)
 	turtle.st()
-	turtle.shape("asset\\p" + str(turn) + ".gif")
+	turtle.shape(os.path.join('asset', 'p' + str(turn) + '.gif'))
 	x = turtle.stamp()
 	turtle.ht()
 	turtle.back(294)
 
 	if wstate != None:
-		turtle.shape(turtle.shape("asset\\"+str(wstate[1])+".gif"))
+		turtle.shape(turtle.shape(os.path.join('asset', str(wstate[1])+'.gif')))
 	else:
-		turtle.shape(turtle.shape("asset\\0.gif"))
+		turtle.shape(turtle.shape(os.path.join('asset', '0.gif')))
 
 	turtle.st()
 	turtle.clearstamp(y)
@@ -232,7 +237,7 @@ def spinDraw(stop, turn, wstate): #Function that makes the wheel spin after the 
 		z = int(i %360)
 		if z == 360:
 			z = 0
-		turtle.shape("asset\\"+str(int(round(z)))+".gif")
+		turtle.shape(os.path.join('asset' ,str(int(round(z)))+'.gif'))
 		n-=1
 
 	time.sleep(0.7)
@@ -242,14 +247,14 @@ def spinDraw(stop, turn, wstate): #Function that makes the wheel spin after the 
 		z = int(i % 360)
 		if z == 360:
 			z = 0
-		turtle.shape("asset\\"+str(int(round(z)))+".gif")
+		turtle.shape(os.path.join('asset', str(int(round(z)))+'.gif'))
 
 	#Original wheel state.
 	i = 0
 	n = 0
 
 	while n <= 3: #wheel
-		turtle.shape("asset\\"+str(int(i))+".gif")
+		turtle.shape(os.path.join('asset', str(int(i))+'.gif'))
 		if i + a > 360 and n == 3:
 			i = -18
 			break
@@ -263,10 +268,10 @@ def spinDraw(stop, turn, wstate): #Function that makes the wheel spin after the 
 
 	while i<stop*15+var:
 		if i+18 > stop*15:
-			turtle.shape("asset\\"+str(int((stop*15+var)))+".gif")
+			turtle.shape(os.path.join('asset', str(int((stop*15+var)))+'.gif'))
 			break
 		else:
-			turtle.shape("asset\\"+str(int(i+18))+".gif")
+			turtle.shape(os.path.join('asset', str(int(i+18))+'.gif'))
 			i+=18
 
 	i = stop*15+var
@@ -278,7 +283,7 @@ def spinDraw(stop, turn, wstate): #Function that makes the wheel spin after the 
 		a = int(round(i%360))
 		if a == 360:
 			a = 0
-		turtle.shape("asset\\"+str(a)+".gif")
+		turtle.shape(os.path.join('asset', str(a)+'.gif'))
 		n-=1
 	return [x,round(i%360)]
 
@@ -350,7 +355,7 @@ def printArray(arr): #array printing handler.
 	print(b.center(90))
 
 #Import DB
-source = open("asset\\WofFPhrases.txt","r").readlines()
+source = open(os.path.join('asset', 'WofFPhrases.txt'), 'r').readlines()
 word = source[random.randint(0,75)].strip()
 word_hidden = []
 for i in range (0, len(word)):

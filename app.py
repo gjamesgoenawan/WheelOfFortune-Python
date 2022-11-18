@@ -14,9 +14,8 @@ import threading
 if os.name == "nt":
 	clear = lambda: os.system('cls') ## for windows system
 	os.system('@echo off')
-	os.system('mode con: cols=50 lines=5')
 
-if os.name == "posix":
+elif os.name == "posix":
 	clear = lambda: os.system('clear')
 
 else:
@@ -97,8 +96,6 @@ clear()
 print("Loading asset... 100%")
 time.sleep(0.5)
 clear()
-if os.name == 'nt':
-	os.system('mode con: cols=90 lines=35')
 #global functions
 
 def existConsonant(word_hidden, word): #function to check if a consonant exist
